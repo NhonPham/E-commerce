@@ -19,6 +19,8 @@ app.use(
 // Routes
 app.use("/user", require("./routes/userRouter"));
 
+app.use("/api", require("./routes/productRouter"));
+
 //Connect to mogodb
 const URI = process.env.MONGODB_URL;
 mongoose.connect(
