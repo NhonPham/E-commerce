@@ -5,5 +5,8 @@ router
   .route("/products")
   .post(productController.createProduct);
 
+router
+  .route("/products/:id")
+  .delete(productController.deleteProduct);
 
 module.exports = router;
