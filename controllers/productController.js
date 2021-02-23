@@ -25,6 +25,21 @@ class APIfeatures {
 
     return this;
   }
+
+  sorting() {
+    if (this.queryString.sort) {
+      const sortBy = this.queryString.sort.split(",").join(" ");
+      if (new String(sortBy).valueOf() === new String("oldest").valueOf()) {
+        this.query = this.query.sort("createdAt");
+      } else {
+        this.query = this.query.sort(sortBy);
+      }
+    } else {
+      this.query = this.query.sort("-createdAt");
+    }
+
+    return this;
+  }
 }
 
 const productController = {
@@ -32,7 +47,8 @@ const productController = {
     try {
       console.log("exact query: ", req.query);
       const features = new APIfeatures(Products.find(), req.query)
-        .filtering();
+        .filtering()
+        .sorting();
 
       const products = await features.query;
 
