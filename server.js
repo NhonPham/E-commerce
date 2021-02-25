@@ -18,7 +18,7 @@ app.use(
 
 // Routes
 app.use("/user", require("./routes/userRouter"));
-
+app.use("/api", require("./routes/categoryRouter"));
 app.use("/api", require("./routes/productRouter"));
 
 //Connect to mogodb
